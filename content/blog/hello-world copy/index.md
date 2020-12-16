@@ -3,8 +3,6 @@ title: Hello World
 date: "2015-05-01T22:12:03.284Z"
 description: "Hello World"
 author: "Nathan Jenkins Boale"
-category: "science-and-tech"
-featured: true
 ---
 
 This is my first post on my new fake blog! How exciting!

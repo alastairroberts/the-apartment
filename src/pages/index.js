@@ -1,64 +1,70 @@
-import React from "react"
-import { Link, graphql } from "gatsby"
+import React, { useState, useEffect } from "react"
 
-import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import { Grid, Row, Col } from "rsuite"
+import { graphql } from "gatsby"
+
+import ArticleCard from "../components/ArticleCard"
+import SubNavBar from "../components/SubNavBar"
 
 const BlogIndex = ({ data, location }) => {
-  const siteTitle = data.site.siteMetadata?.title || `Title`
-  const posts = data.allMarkdownRemark.nodes
+  const siteTitle = "dd "
+  const [currentPage, setCurrentPage] = useState("front-page")
 
-  if (posts.length === 0) {
-    return (
-      <Layout location={location} title={siteTitle}>
-        <SEO title="All posts" />
-        <Bio />
-        <p>
-          No blog posts found!!! Add markdown posts to "content/blog" (or the
-          directory you specified for the "gatsby-source-filesystem" plugin in
-          gatsby-config.js).
-        </p>
-      </Layout>
-    )
-  }
+  const allPosts = data.allMarkdownRemark.nodes
+  const [posts, setPosts] = useState(allPosts)
+  const [featuredPosts, setFeaturedPosts] = useState(
+    allPosts.filter(post => post.frontmatter.featured)
+  )
+
+  useEffect(() => {
+    if (currentPage !== "front-page") {
+      setPosts(
+        allPosts.filter(post => post.frontmatter.category === currentPage)
+      )
+      setFeaturedPosts(
+        allPosts.filter(
+          post =>
+            post.frontmatter.category === currentPage &&
+            post.frontmatter.featured
+        )
+      )
+    } else {
+      setPosts(allPosts)
+      setFeaturedPosts(allPosts.filter(post => post.frontmatter.featured))
+    }
+  }, [currentPage, allPosts])
 
   return (
-    <Layout location={location} title={siteTitle}>
+    <Layout
+      currentPage={currentPage}
+      setCurrentPage={setCurrentPage}
+      location={location}
+      title={siteTitle}
+    >
       <SEO title="All posts" />
-      <Bio />
-      <ol style={{ listStyle: `none` }}>
-        {posts.map(post => {
-          const title = post.frontmatter.title || post.fields.slug
-
-          return (
-            <li key={post.fields.slug}>
-              <article
-                className="post-list-item"
-                itemScope
-                itemType="http://schema.org/Article"
-              >
-                <header>
-                  <h2>
-                    <Link to={post.fields.slug} itemProp="url">
-                      <span itemProp="headline">{title}</span>
-                    </Link>
-                  </h2>
-                  <small>{post.frontmatter.date}</small>
-                </header>
-                <section>
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html: post.frontmatter.description || post.excerpt,
-                    }}
-                    itemProp="description"
-                  />
-                </section>
-              </article>
-            </li>
-          )
-        })}
-      </ol>
+      <SubNavBar
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        location={location}
+      />
+      <Grid>
+        <Row style={{ marginTop: 10 }}>
+          <Col md={12}>
+            <h2>Featured</h2>
+            {featuredPosts.map((post, i) => {
+              return <ArticleCard key={i} post={post} />
+            })}
+          </Col>
+          <Col md={12}>
+            <h2>All Posts</h2>
+            {posts.map((post, i) => {
+              return <ArticleCard key={i} post={post} />
+            })}
+          </Col>
+        </Row>
+      </Grid>
     </Layout>
   )
 }
@@ -82,6 +88,9 @@ export const pageQuery = graphql`
           date(formatString: "MMMM DD, YYYY")
           title
           description
+          author
+          category
+          featured
         }
       }
     }
