@@ -24,7 +24,7 @@ const MyLink = props => {
   )
 }
 
-const NavLink = props => {
+export const NavLink = props => {
   return <Nav.Item {...props} componentClass={MyLink} />
 }
 const NavigationBar = () => {

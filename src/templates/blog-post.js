@@ -1,5 +1,6 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
+import { Grid, Row, Col, IconButton, Icon, Nav } from "rsuite"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -15,46 +16,55 @@ const BlogPostTemplate = ({ data, location }) => {
         title={post.frontmatter.title}
         description={post.frontmatter.description || post.excerpt}
       />
-      <article
-        className="blog-post"
-        itemScope
-        itemType="http://schema.org/Article"
-      >
-        <header>
-          <h1 itemProp="headline">{post.frontmatter.title}</h1>
-          <p>{post.frontmatter.date}</p>
-        </header>
-        <section
-          dangerouslySetInnerHTML={{ __html: post.html }}
-          itemProp="articleBody"
-        />
-      </article>
-      <nav className="blog-post-nav">
-        <ul
-          style={{
-            display: `flex`,
-            flexWrap: `wrap`,
-            justifyContent: `space-between`,
-            listStyle: `none`,
-            padding: 0,
-          }}
-        >
-          <li>
-            {previous && (
-              <Link to={previous.fields.slug} rel="prev">
-                ← {previous.frontmatter.title}
-              </Link>
-            )}
-          </li>
-          <li>
-            {next && (
-              <Link to={next.fields.slug} rel="next">
-                {next.frontmatter.title} →
-              </Link>
-            )}
-          </li>
-        </ul>
-      </nav>
+      <Grid>
+        <Row>
+          <Col>
+            <h1>{post.frontmatter.title}</h1>
+            <p>
+              {post.frontmatter.author} | {post.frontmatter.date}
+            </p>
+            <hr />
+          </Col>
+        </Row>
+
+        <Row>
+          <Col>
+            <section dangerouslySetInnerHTML={{ __html: post.html }} />
+          </Col>
+        </Row>
+
+        <hr />
+        <Row>
+          <ul
+            style={{
+              display: `flex`,
+              flexWrap: `wrap`,
+              justifyContent: `space-between`,
+              listStyle: `none`,
+              padding: 0,
+            }}
+          >
+            <li>
+              {previous && (
+                <Link to={previous.fields.slug} rel="prev">
+                  <IconButton icon={<Icon icon="left" />} placement="left">
+                    {previous.frontmatter.title}
+                  </IconButton>
+                </Link>
+              )}
+            </li>
+            <li>
+              {next && (
+                <Link to={next.fields.slug} rel="next">
+                  <IconButton icon={<Icon icon="right" />} placement="right">
+                    {next.frontmatter.title}
+                  </IconButton>
+                </Link>
+              )}
+            </li>
+          </ul>
+        </Row>
+      </Grid>
     </Layout>
   )
 }
@@ -80,6 +90,7 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         description
+        author
       }
     }
     previous: markdownRemark(id: { eq: $previousPostId }) {

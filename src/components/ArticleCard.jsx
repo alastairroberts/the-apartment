@@ -12,6 +12,7 @@ import {
   Col,
 } from "rsuite"
 import { Link } from "gatsby"
+import { NavLink } from "../components/NavigationBar"
 
 const ArticleCard = ({ post }) => {
   const { frontmatter, fields } = post
