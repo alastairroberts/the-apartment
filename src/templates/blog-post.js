@@ -1,9 +1,9 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
-import { Grid, Row, Col, IconButton, Icon, Nav } from "rsuite"
+import { Grid, Row, Col, IconButton, Icon } from "rsuite"
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Layout from "../components/unique/layout"
+import SEO from "../components/unique/seo"
 
 const BlogPostTemplate = ({ data, location }) => {
   const post = data.markdownRemark

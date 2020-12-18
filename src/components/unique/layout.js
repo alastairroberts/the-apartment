@@ -1,19 +1,19 @@
 import React from "react"
-import { Container, Header, Content, Footer } from "rsuite"
-import NavigationBar from "./NavigationBar"
+import { Grid } from "@material-ui/core"
+import NavigationBar from "../navigation/NavigationBar"
 
 const Layout = ({ location, title, children, currentPage, setCurrentPage }) => {
   return (
-    <Container>
-      <Header>
+    <Grid style={{ backgroundColor: "#fafafa" }}>
+      <header>
         <NavigationBar />
-      </Header>
-      <Content>{children}</Content>
-      <Footer>
+      </header>
+      {children}
+      <footer>
         © {new Date().getFullYear()}, Nathan Jenkins-Boale
         {` `}
-      </Footer>
-    </Container>
+      </footer>
+    </Grid>
   )
 }
 

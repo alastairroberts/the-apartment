@@ -13,6 +13,13 @@ module.exports = {
   },
   plugins: [
     {
+      resolve: `gatsby-plugin-google-fonts`,
+      options: {
+        fonts: [`roboto mono`],
+        display: "swap",
+      },
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/content/blog`,

@@ -9,7 +9,7 @@ const SubNavBar = ({ location, currentPage, setCurrentPage }) => {
         justifyContent: "center",
       }}
       reversed
-      appearance="tabs"
+      appearance="subtle"
     >
       <Nav.Item
         onClick={() => {

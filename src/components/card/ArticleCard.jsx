@@ -1,7 +1,6 @@
 import React from "react"
 import {
   Panel,
-  Placeholder,
   Container,
   Footer,
   Content,
@@ -12,11 +11,9 @@ import {
   Col,
 } from "rsuite"
 import { Link } from "gatsby"
-import { NavLink } from "../components/NavigationBar"
 
 const ArticleCard = ({ post }) => {
   const { frontmatter, fields } = post
-  const { Paragraph } = Placeholder
   let acr = ""
   if (frontmatter.author) acr = frontmatter.author.match(/\b(\w)/g).join("")
   return (
@@ -28,7 +25,6 @@ const ArticleCard = ({ post }) => {
           </Content>
 
           <Footer style={{ marginTop: 20 }}>
-            {" "}
             <Row
               style={{
                 flexGrow: 1,
@@ -41,7 +37,9 @@ const ArticleCard = ({ post }) => {
                   placement="top"
                   speaker={<Tooltip>{frontmatter.author}</Tooltip>}
                 >
-                  <Avatar size="sm">{acr}</Avatar>
+                  <Avatar variant="circle" size="sm">
+                    {acr}
+                  </Avatar>
                 </Whisper>{" "}
               </Col>
               <Col style={{ textAlign: "right" }} xs={12}>
