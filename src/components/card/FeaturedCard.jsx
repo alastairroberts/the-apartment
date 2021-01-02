@@ -6,8 +6,6 @@ import {
   CardMedia,
   CardContent,
   Typography,
-  Avatar,
-  CardActions,
 } from "@material-ui/core"
 import { Link } from "gatsby"
 
@@ -31,8 +29,7 @@ const useStyles = makeStyles({
 const FeaturedCard = ({ post }) => {
   const classes = useStyles()
   const { frontmatter, fields } = post
-  let acr = ""
-  if (frontmatter.author) acr = frontmatter.author.match(/\b(\w)/g).join("")
+
   return (
     <Link className={classes.linkStyle} to={fields.slug} itemProp="url">
       <Card className={classes.root}>
@@ -51,7 +48,7 @@ const FeaturedCard = ({ post }) => {
               {frontmatter.description}
             </Typography>
           </CardContent>
-          <CardFooter frontmatter={frontmatter} acr={acr} />
+          <CardFooter frontmatter={frontmatter} />
         </CardActionArea>
       </Card>
     </Link>

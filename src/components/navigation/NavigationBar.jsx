@@ -1,67 +1,58 @@
-import React, { useState } from "react"
-import { Nav, Navbar, Icon } from "rsuite"
+import React from "react"
+
+import { makeStyles } from "@material-ui/core/styles"
+import { AppBar, Toolbar, Typography } from "@material-ui/core"
+import ContactSupportOutlinedIcon from "@material-ui/icons/ContactSupportOutlined"
+import SearchOutlinedIcon from "@material-ui/icons/SearchOutlined"
+import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined"
+
 import { Link } from "gatsby"
 
-import Search from "./Search"
+import TooltipButton from "../common/TooltipButton"
 
-const styles = {
-  navbarBrand: {
-    padding: "18px 20px",
-    display: "inline-block",
+const useStyles = makeStyles(theme => ({
+  root: {
+    flexGrow: 1,
+    color: "grey",
   },
-  linkStyle: {
-    textDecoration: "none",
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
+  link: {
     color: "inherit",
+    textDecoration: "none",
   },
-}
-const MyLink = props => {
-  const { iconObj, label, to, as, ...rest } = props
+}))
 
+const NavigationBarM = () => {
+  const classes = useStyles()
   return (
-    <Link to={to} as={as} {...rest}>
-      {iconObj} {label}
-    </Link>
+    <div className={classes.root}>
+      <AppBar color="inherit" position="static">
+        <Toolbar>
+          <Typography variant="inherit" className={classes.title}>
+            <Link className={classes.link} to="/">
+              The Apartment
+            </Link>
+          </Typography>
+          <Link className={classes.link} to="/contact">
+            <TooltipButton
+              title={"Contact"}
+              icon={<ContactSupportOutlinedIcon />}
+            />
+          </Link>
+          <Link className={classes.link} to="/about">
+            <TooltipButton title="About" icon={<InfoOutlinedIcon />} />
+          </Link>
+
+          <TooltipButton title="Search" icon={<SearchOutlinedIcon />} />
+        </Toolbar>
+      </AppBar>
+    </div>
   )
 }
 
-export const NavLink = props => {
-  return <Nav.Item {...props} componentClass={MyLink} />
-}
-const NavigationBar = () => {
-  const [showSearch, setShowSearch] = useState(false)
-
-  return (
-    <Navbar appearance="subtle">
-      <Navbar.Header>
-        <Link to="/" style={styles.navbarBrand} className="logo">
-          The Apartment
-        </Link>
-      </Navbar.Header>
-      <Navbar.Body>
-        <Nav pullRight>
-          <NavLink
-            label="About"
-            iconObj={<Icon icon="question2" />}
-            to="/about"
-          />
-          <NavLink
-            label="Contact"
-            iconObj={<Icon icon="user-o" />}
-            to="/contact"
-          />
-
-          <Nav.Item
-            onClick={() => setShowSearch(true)}
-            icon={<Icon icon="search" />}
-          >
-            {" "}
-            Search
-          </Nav.Item>
-          <Search showSearch={showSearch} setShowSearch={setShowSearch} />
-        </Nav>
-      </Navbar.Body>
-    </Navbar>
-  )
-}
-
-export default NavigationBar
+export default NavigationBarM

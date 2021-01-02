@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react"
 
 import Layout from "../components/unique/layout"
 import SEO from "../components/unique/seo"
-import { Grid, Row, Col } from "rsuite"
+
+import { Box, Paper } from "@material-ui/core"
 import { graphql } from "gatsby"
 
 import FeaturedCard from "../components/card/FeaturedCard"
 import ArticleCard from "../components/card/ArticleCard"
-import SubNavBar from "../components/navigation/SubNavigationBar"
 
 import HorrizontalScrollContainer from "../components/common/HorrizontalScrollContainer"
 
@@ -50,28 +50,28 @@ const BlogIndex = ({ data, location }) => {
       title={siteTitle}
     >
       <SEO title="All posts" />
-      <SubNavBar
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-        location={location}
-      />
-      <Grid>
-        <h2>Featured</h2>
-      </Grid>
-      <Grid fluid>
-        <HorrizontalScrollContainer elements={generateFeaturedCardGroup()} />
-      </Grid>
 
-      <Grid style={{ marginTop: 10 }} justify="center">
-        <Row>
-          <Col>
-            <h2>All Posts</h2>
-            {posts.map((post, i) => {
-              return <ArticleCard key={i} post={post} />
-            })}
-          </Col>
-        </Row>
-      </Grid>
+      <Paper elevation={6}>
+        <Box mt={5} py={6}>
+          <Box mx={6}>
+            <h2 style={{ marginTop: 0 }}>Featured</h2>
+          </Box>
+
+          <HorrizontalScrollContainer elements={generateFeaturedCardGroup()} />
+        </Box>
+      </Paper>
+
+      <Box mx={6}>
+        <h2>All Posts</h2>
+
+        {posts.map((post, i) => {
+          return (
+            <Box mb={2}>
+              <ArticleCard key={i} post={post} />
+            </Box>
+          )
+        })}
+      </Box>
     </Layout>
   )
 }

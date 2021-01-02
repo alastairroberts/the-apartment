@@ -1,12 +1,22 @@
 import React from "react"
-import { Grid } from "@material-ui/core"
+import { Grid, Paper } from "@material-ui/core"
 import NavigationBar from "../navigation/NavigationBar"
+import SubNavBar from "../navigation/SubNavigationBar"
 
 const Layout = ({ location, title, children, currentPage, setCurrentPage }) => {
   return (
     <Grid style={{ backgroundColor: "#fafafa" }}>
       <header>
-        <NavigationBar />
+        <Paper elevation={2}>
+          <NavigationBar />
+          {location.pathname === "/" && (
+            <SubNavBar
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+              location={location}
+            />
+          )}
+        </Paper>
       </header>
       {children}
       <footer>
