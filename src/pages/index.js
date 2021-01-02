@@ -7,7 +7,7 @@ import { graphql } from "gatsby"
 
 import FeaturedCard from "../components/card/FeaturedCard"
 import ArticleCard from "../components/card/ArticleCard"
-import SubNavBar from "../components/navigation/SubNavBar"
+import SubNavBar from "../components/navigation/SubNavigationBar"
 
 import HorrizontalScrollContainer from "../components/common/HorrizontalScrollContainer"
 
