@@ -5,6 +5,7 @@ description: "llo WorldHello o World"
 author: "Nathan Jenkins Boale"
 featured: true
 meta: ["meta3", "Andrew", "meta5"]
+thumbnail: "./thumbnail.jpg"
 ---
 
 This is my first post on my new fake blog! How exciting!

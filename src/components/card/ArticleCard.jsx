@@ -1,6 +1,6 @@
 import React from "react"
 import { Paper, Grid, Typography, Divider } from "@material-ui/core"
-
+import Img from "gatsby-image"
 import CardFooter from "./CardFooter"
 
 import { Link } from "gatsby"
@@ -20,15 +20,14 @@ const ArticleCard = ({ post }) => {
   return (
     <Link className={classes.linkStyle} to={fields.slug} itemProp="url">
       <Paper variant="outlined">
-        <Grid container direction="row">
+        <Grid container justify="center" direction="row">
           <Grid item>
-            <img
-              src="https://via.placeholder.com/250x250"
-              alt={frontmatter.title}
-            ></img>
+            {frontmatter.thumbnail && (
+              <Img fixed={frontmatter.thumbnail.childImageSharp.fixed} />
+            )}
           </Grid>
 
-          <Grid container item xs={12} sm style={{ margin: 10 }}>
+          <Grid container item xs={12} md style={{ margin: 10 }}>
             <Grid item xs container direction="column" spacing={2}>
               <Grid xs item>
                 <Grid item xs container direction="column" spacing={2}>
@@ -37,16 +36,16 @@ const ArticleCard = ({ post }) => {
                   </Grid>
                   <Grid item>
                     <Typography
-                      variant="body1"
+                      variant="body"
                       color="textSecondary"
-                      component="p"
+                      component="h6"
                     >
                       {frontmatter.description}
                     </Typography>
                   </Grid>
                   <Divider />
                   <Grid item>
-                    <Typography variant="body2" component="p">
+                    <Typography variant="body" component="p">
                       {post.excerpt}
                     </Typography>
                   </Grid>

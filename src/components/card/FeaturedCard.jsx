@@ -1,5 +1,7 @@
 import React from "react"
-import { makeStyles } from "@material-ui/core/styles"
+import { makeStyles, useTheme } from "@material-ui/core/styles"
+import Img from "gatsby-image"
+
 import {
   Card,
   CardActionArea,
@@ -15,18 +17,21 @@ const useStyles = makeStyles({
   root: {
     flex: "0 0 auto",
     width: 300,
-    margin: 5,
+    margin: 10,
   },
-  media: {
-    height: 200,
-  },
+
   linkStyle: {
     textDecoration: "none",
     color: "inherit",
   },
+  splash: {
+    width: "100%",
+    height: "5px",
+  },
 })
 
 const FeaturedCard = ({ post }) => {
+  const theme = useTheme()
   const classes = useStyles()
   const { frontmatter, fields } = post
 
@@ -34,17 +39,19 @@ const FeaturedCard = ({ post }) => {
     <Link className={classes.linkStyle} to={fields.slug} itemProp="url">
       <Card className={classes.root}>
         <CardActionArea>
-          <CardMedia
-            className={classes.media}
-            image="https://via.placeholder.com/300x200"
-            title={frontmatter.title}
-          />
+          {frontmatter.thumbnail && (
+            <Img fixed={frontmatter.thumbnail.childImageSharp.fixed} />
+          )}
 
+          <div
+            style={{ backgroundColor: theme.palette.primary.main }}
+            className={classes.splash}
+          />
           <CardContent>
             <Typography gutterBottom variant="h5">
               {frontmatter.title}
             </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
+            <Typography variant="body" color="textSecondary" component="p">
               {frontmatter.description}
             </Typography>
           </CardContent>

@@ -5,6 +5,7 @@ description: "Here is a quick description"
 author: "Nathan Jenkins Boale"
 category: "science-and-tech"
 featured: true
+thumbnail: "./thumbnail.jpg"
 ---
 
 hey

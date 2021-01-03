@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react"
 import Layout from "../components/unique/layout"
 import SEO from "../components/unique/seo"
 
-import { Box, Paper } from "@material-ui/core"
+import { Box, Paper, Typography } from "@material-ui/core"
 import { graphql } from "gatsby"
 
 import FeaturedCard from "../components/card/FeaturedCard"
@@ -39,7 +39,13 @@ const BlogIndex = ({ data, location }) => {
   }, [currentPage, allPosts])
 
   const generateFeaturedCardGroup = () =>
-    featuredPosts.map((post, i) => <FeaturedCard key={i} post={post} />)
+    featuredPosts.map((post, i) => (
+      <FeaturedCard
+        thumbnail={post.frontmatter.thumbnail}
+        key={i}
+        post={post}
+      />
+    ))
 
   return (
     <Layout
@@ -52,16 +58,22 @@ const BlogIndex = ({ data, location }) => {
 
       <Paper elevation={6}>
         <Box mt={5} py={6}>
-          <Box mx={6}>
-            <h2 style={{ marginTop: 0 }}>Featured</h2>
+          <Box mb={2} mx={6}>
+            <Typography color="primary" variant="h4">
+              Featured
+            </Typography>
           </Box>
 
           <HorrizontalScrollContainer elements={generateFeaturedCardGroup()} />
         </Box>
       </Paper>
 
-      <Box mx={6}>
-        <h2>All Related Posts</h2>
+      <Box mt={6} mx={6}>
+        <Box mb={2}>
+          <Typography color="primary" variant="h4">
+            All Related Posts
+          </Typography>
+        </Box>
 
         {posts.map((post, i) => {
           return (
@@ -97,6 +109,13 @@ export const pageQuery = graphql`
           author
           category
           featured
+          thumbnail {
+            childImageSharp {
+              fixed(width: 300, height: 300) {
+                ...GatsbyImageSharpFixed
+              }
+            }
+          }
         }
       }
     }

@@ -28,12 +28,10 @@ const SubNavigationBar = ({ setCurrentPage }) => {
   }
 
   return (
-    <AppBar position="static" color="inherit" elevation={0}>
+    <AppBar position="static" elevation={0}>
       <Tabs
         value={value}
         onChange={handleChange}
-        indicatorColor="primary"
-        textColor="primary"
         variant="scrollable"
         scrollButtons="auto"
         aria-label="scrollable"

@@ -31,14 +31,14 @@ const NavigationBar = ({ setSearchDrawer }) => {
   const classes = useStyles()
   return (
     <div className={classes.root}>
-      <AppBar color="inherit" position="static">
+      <AppBar color="primary" position="static">
         <Toolbar>
           <Typography variant="inherit" className={classes.title}>
             <Link className={classes.link} to="/">
               The Apartment
             </Link>
           </Typography>
-          <Link className={classes.link} to="/contact">
+          {/* <Link className={classes.link} to="/contact">
             <TooltipButton
               title={"Contact"}
               icon={<ContactSupportOutlinedIcon />}
@@ -46,7 +46,7 @@ const NavigationBar = ({ setSearchDrawer }) => {
           </Link>
           <Link className={classes.link} to="/about">
             <TooltipButton title="About" icon={<InfoOutlinedIcon />} />
-          </Link>
+          </Link> */}
 
           <TooltipButton
             onClick={() => setSearchDrawer(true)}

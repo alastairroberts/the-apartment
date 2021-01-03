@@ -27,6 +27,13 @@ const SearchDrawer = ({ searchDrawerIsOpen, setSearchDrawer }) => {
             category
             featured
             meta
+            thumbnail {
+              childImageSharp {
+                fixed(width: 300, height: 300) {
+                  ...GatsbyImageSharpFixed
+                }
+              }
+            }
           }
         }
       }
