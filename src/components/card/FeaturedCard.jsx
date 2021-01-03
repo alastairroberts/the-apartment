@@ -5,7 +5,6 @@ import Img from "gatsby-image"
 import {
   Card,
   CardActionArea,
-  CardMedia,
   CardContent,
   Typography,
 } from "@material-ui/core"
