@@ -20,7 +20,7 @@ const ArticleCard = ({ post }) => {
   return (
     <Link className={classes.linkStyle} to={fields.slug} itemProp="url">
       <Paper variant="outlined">
-        <Grid container justifyContent="center" direction="row">
+        <Grid container direction="row">
           <Grid item>
             <img
               src="https://via.placeholder.com/250x250"

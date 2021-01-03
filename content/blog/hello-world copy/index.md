@@ -4,6 +4,7 @@ date: "2015-05-01T22:12:03.284Z"
 description: "llo WorldHello o World"
 author: "Nathan Jenkins Boale"
 featured: true
+meta: ["meta3", "Andrew", "meta5"]
 ---
 
 This is my first post on my new fake blog! How exciting!

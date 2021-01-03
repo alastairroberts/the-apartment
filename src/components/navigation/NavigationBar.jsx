@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const NavigationBarM = () => {
+const NavigationBar = ({ setSearchDrawer }) => {
   const classes = useStyles()
   return (
     <div className={classes.root}>
@@ -48,11 +48,15 @@ const NavigationBarM = () => {
             <TooltipButton title="About" icon={<InfoOutlinedIcon />} />
           </Link>
 
-          <TooltipButton title="Search" icon={<SearchOutlinedIcon />} />
+          <TooltipButton
+            onClick={() => setSearchDrawer(true)}
+            title="Search"
+            icon={<SearchOutlinedIcon />}
+          />
         </Toolbar>
       </AppBar>
     </div>
   )
 }
 
-export default NavigationBarM
+export default NavigationBar

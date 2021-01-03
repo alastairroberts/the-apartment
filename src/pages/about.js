@@ -1,8 +1,8 @@
 import React from "react"
 import Layout from "../components/unique/layout"
 
-const About = () => {
-  return <Layout>About</Layout>
+const About = ({ location }) => {
+  return <Layout location={location}>About</Layout>
 }
 
 export default About

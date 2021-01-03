@@ -8,7 +8,6 @@ import { graphql } from "gatsby"
 
 import FeaturedCard from "../components/card/FeaturedCard"
 import ArticleCard from "../components/card/ArticleCard"
-
 import HorrizontalScrollContainer from "../components/common/HorrizontalScrollContainer"
 
 const BlogIndex = ({ data, location }) => {
@@ -62,12 +61,12 @@ const BlogIndex = ({ data, location }) => {
       </Paper>
 
       <Box mx={6}>
-        <h2>All Posts</h2>
+        <h2>All Related Posts</h2>
 
         {posts.map((post, i) => {
           return (
-            <Box mb={2}>
-              <ArticleCard key={i} post={post} />
+            <Box key={i} mb={2}>
+              <ArticleCard post={post} />
             </Box>
           )
         })}

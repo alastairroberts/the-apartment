@@ -5,6 +5,7 @@ description: "Hello World"
 author: "Nathan Jenkins Boale"
 category: "science-and-tech"
 featured: true
+meta: ["bee", "nathan", "meta2", "bbe"]
 ---
 
 This is my first post on my new fake blog! How exciting!

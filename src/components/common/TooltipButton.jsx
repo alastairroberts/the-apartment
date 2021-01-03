@@ -1,10 +1,10 @@
 import React from "react"
 import { IconButton, Tooltip } from "@material-ui/core"
 
-const TooltipButton = ({ icon, title }) => {
+const TooltipButton = ({ icon, title, onClick }) => {
   return (
     <Tooltip title={title}>
-      <IconButton aria-label={title} color="inherit">
+      <IconButton onClick={onClick} aria-label={title} color="inherit">
         {icon}
       </IconButton>
     </Tooltip>

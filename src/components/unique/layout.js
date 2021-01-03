@@ -1,14 +1,29 @@
-import React from "react"
+import React, { useState } from "react"
 import { Grid, Paper } from "@material-ui/core"
 import NavigationBar from "../navigation/NavigationBar"
 import SubNavBar from "../navigation/SubNavigationBar"
+import SearchDrawer from "../navigation/SeachDrawer"
 
-const Layout = ({ location, title, children, currentPage, setCurrentPage }) => {
+const Layout = ({
+  location,
+  title,
+  children,
+  currentPage,
+  setCurrentPage,
+  allPosts,
+}) => {
+  const [searchDrawerIsOpen, setSearchDrawer] = useState(false)
   return (
     <Grid style={{ backgroundColor: "#fafafa" }}>
       <header>
         <Paper elevation={2}>
-          <NavigationBar />
+          <SearchDrawer
+            setSearchDrawer={setSearchDrawer}
+            searchDrawerIsOpen={searchDrawerIsOpen}
+            allPosts={allPosts}
+          />
+
+          <NavigationBar setSearchDrawer={setSearchDrawer} />
           {location.pathname === "/" && (
             <SubNavBar
               currentPage={currentPage}
@@ -18,6 +33,7 @@ const Layout = ({ location, title, children, currentPage, setCurrentPage }) => {
           )}
         </Paper>
       </header>
+
       {children}
       <footer>
         © {new Date().getFullYear()}, Nathan Jenkins-Boale
