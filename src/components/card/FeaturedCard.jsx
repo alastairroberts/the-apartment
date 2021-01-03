@@ -15,7 +15,6 @@ import CardFooter from "./CardFooter"
 
 const useStyles = makeStyles({
   root: {
-    flex: "0 0 auto",
     width: 300,
     margin: 5,
   },
@@ -39,7 +38,7 @@ const FeaturedCard = ({ post }) => {
 
   return (
     <Link className={classes.linkStyle} to={fields.slug} itemProp="url">
-      <Card className={classes.root}>
+      <Card style={{ flex: "0 0 auto" }} className={classes.root}>
         <CardActionArea>
           {frontmatter.thumbnail && (
             <CardMedia className={classes.media} title={frontmatter.title}>
