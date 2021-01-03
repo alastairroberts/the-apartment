@@ -13,8 +13,9 @@ import { Link } from "gatsby"
 
 import CardFooter from "./CardFooter"
 
-const useStyles = makeStyles({
+const classes = {
   root: {
+    flex: "0 0 auto",
     width: 300,
     margin: 5,
   },
@@ -29,19 +30,22 @@ const useStyles = makeStyles({
     width: "100%",
     height: "5px",
   },
-})
+}
 
 const FeaturedCard = ({ post }) => {
   const theme = useTheme()
-  const classes = useStyles()
   const { frontmatter, fields } = post
 
   return (
-    <Link className={classes.linkStyle} to={fields.slug} itemProp="url">
-      <Card style={{ flex: "0 0 auto" }} className={classes.root}>
+    <Link style={classes.linkStyle} to={fields.slug} itemProp="url">
+      <Card style={classes.root}>
         <CardActionArea>
           {frontmatter.thumbnail && (
-            <CardMedia className={classes.media} title={frontmatter.title}>
+            <CardMedia
+              image="https://via.placeholder.com/350"
+              style={classes.media}
+              title={frontmatter.title}
+            >
               {frontmatter.thumbnail && (
                 <Img fixed={frontmatter.thumbnail.childImageSharp.fixed} />
               )}
