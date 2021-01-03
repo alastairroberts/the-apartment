@@ -6,6 +6,7 @@ import NavigationBar from "../navigation/NavigationBar"
 import SubNavBar from "../navigation/SubNavigationBar"
 import SearchDrawer from "../navigation/SeachDrawer"
 const theme = createMuiTheme({
+  spacing: 10,
   palette: {
     type: "light",
     primary: {
@@ -38,6 +39,7 @@ const Layout = ({
   allPosts,
 }) => {
   const [searchDrawerIsOpen, setSearchDrawer] = useState(false)
+
   return (
     <ThemeProvider theme={theme}>
       <Grid>

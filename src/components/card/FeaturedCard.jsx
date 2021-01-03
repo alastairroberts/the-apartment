@@ -16,11 +16,11 @@ import CardFooter from "./CardFooter"
 const useStyles = makeStyles({
   root: {
     flex: "0 0 auto",
-    width: 300,
+    maxWidth: 300,
     margin: 5,
   },
   media: {
-    height: 300,
+    maxHeight: 200,
   },
   linkStyle: {
     textDecoration: "none",
@@ -48,7 +48,10 @@ const FeaturedCard = ({ post }) => {
               title={frontmatter.title}
             >
               {frontmatter.thumbnail && (
-                <Img fixed={frontmatter.thumbnail.childImageSharp.fixed} />
+                <Img
+                  style={{ width: 300, height: 200 }}
+                  fluid={frontmatter.thumbnail.childImageSharp.fluid}
+                />
               )}
             </CardMedia>
           )}

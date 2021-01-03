@@ -6,12 +6,15 @@ import CardFooter from "./CardFooter"
 import { Link } from "gatsby"
 import { makeStyles } from "@material-ui/core/styles"
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   linkStyle: {
     textDecoration: "none",
     color: "inherit",
   },
-})
+  imageStyle: {
+    height: "100%",
+  },
+}))
 
 const ArticleCard = ({ post }) => {
   const classes = useStyles()
@@ -21,9 +24,15 @@ const ArticleCard = ({ post }) => {
     <Link className={classes.linkStyle} to={fields.slug} itemProp="url">
       <Paper variant="outlined">
         <Grid container justify="center" direction="row">
-          <Grid item>
+          <Grid item md={4} xs={12}>
             {frontmatter.thumbnail && (
-              <Img fixed={frontmatter.thumbnail.childImageSharp.fixed} />
+              <Img
+                className={classes.imageStyle}
+                fluid={{
+                  ...frontmatter.thumbnail.childImageSharp.fluid,
+                  aspectRatio: 16 / 9,
+                }}
+              />
             )}
           </Grid>
 

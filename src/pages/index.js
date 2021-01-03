@@ -3,12 +3,22 @@ import React, { useState, useEffect } from "react"
 import Layout from "../components/unique/layout"
 import SEO from "../components/unique/seo"
 
+import { makeStyles } from "@material-ui/core/styles"
 import { Box, Paper, Typography } from "@material-ui/core"
 import { graphql } from "gatsby"
 
 import FeaturedCard from "../components/card/FeaturedCard"
 import ArticleCard from "../components/card/ArticleCard"
 import HorrizontalScrollContainer from "../components/common/HorrizontalScrollContainer"
+
+const useStyles = makeStyles(theme => ({
+  margin: {
+    margin: theme.spacing(0, 0, 6, 6),
+    [theme.breakpoints.down("sm")]: {
+      margin: theme.spacing(2),
+    },
+  },
+}))
 
 const BlogIndex = ({ data, location }) => {
   const siteTitle = "dd "
@@ -47,6 +57,7 @@ const BlogIndex = ({ data, location }) => {
       />
     ))
 
+  const classes = useStyles()
   return (
     <Layout
       currentPage={currentPage}
@@ -56,20 +67,24 @@ const BlogIndex = ({ data, location }) => {
     >
       <SEO title="All posts" />
 
-      <Paper elevation={6}>
-        <Box mt={5} py={6}>
-          <Box mb={2} mx={6}>
+      <Box my={4}>
+        <Paper elevation={6}>
+          <Box pt={2} className={classes.margin}>
             <Typography color="primary" variant="h4">
               Featured
             </Typography>
           </Box>
 
-          <HorrizontalScrollContainer elements={generateFeaturedCardGroup()} />
-        </Box>
-      </Paper>
+          <Box pb={2}>
+            <HorrizontalScrollContainer
+              elements={generateFeaturedCardGroup()}
+            />
+          </Box>
+        </Paper>
+      </Box>
 
-      <Box mt={6} mx={6}>
-        <Box mb={2}>
+      <Box className={classes.margin} mt={6} mx={6}>
+        <Box my={4}>
           <Typography color="primary" variant="h4">
             All Related Posts
           </Typography>
@@ -111,8 +126,8 @@ export const pageQuery = graphql`
           featured
           thumbnail {
             childImageSharp {
-              fixed(width: 300, height: 300) {
-                ...GatsbyImageSharpFixed
+              fluid {
+                ...GatsbyImageSharpFluid
               }
             }
           }
