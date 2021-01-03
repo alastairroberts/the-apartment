@@ -15,7 +15,7 @@ import CardFooter from "./CardFooter"
 
 const useStyles = makeStyles({
   root: {
-    flex: "0 0 auto",
+    display: "inline-block",
     width: 300,
     margin: 10,
   },

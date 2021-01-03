@@ -3,9 +3,9 @@ import { makeStyles } from "@material-ui/core/styles"
 
 const useStyles = makeStyles({
   root: {
-    display: "flex",
-    flexWrap: "nowrap",
-    overflowX: "auto",
+    overflowX: "scroll",
+    overflowY: "hidden",
+    whiteSpace: "nowrap",
   },
 })
 
