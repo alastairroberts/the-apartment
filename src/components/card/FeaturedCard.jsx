@@ -5,6 +5,7 @@ import Img from "gatsby-image"
 import {
   Card,
   CardActionArea,
+  CardMedia,
   CardContent,
   Typography,
 } from "@material-ui/core"
@@ -14,11 +15,13 @@ import CardFooter from "./CardFooter"
 
 const useStyles = makeStyles({
   root: {
-    display: "inline-block",
+    flex: "0 0 auto",
     width: 300,
-    margin: 10,
+    margin: 5,
   },
-
+  media: {
+    height: 300,
+  },
   linkStyle: {
     textDecoration: "none",
     color: "inherit",
@@ -39,13 +42,17 @@ const FeaturedCard = ({ post }) => {
       <Card className={classes.root}>
         <CardActionArea>
           {frontmatter.thumbnail && (
-            <Img fixed={frontmatter.thumbnail.childImageSharp.fixed} />
+            <CardMedia className={classes.media} title={frontmatter.title}>
+              {frontmatter.thumbnail && (
+                <Img fixed={frontmatter.thumbnail.childImageSharp.fixed} />
+              )}
+            </CardMedia>
           )}
 
           <div
             style={{ backgroundColor: theme.palette.primary.main }}
             className={classes.splash}
-          />
+          ></div>
           <CardContent>
             <Typography gutterBottom variant="h5">
               {frontmatter.title}
