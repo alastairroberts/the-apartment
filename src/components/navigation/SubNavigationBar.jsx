@@ -33,8 +33,8 @@ const SubNavigationBar = ({ setCurrentPage }) => {
         value={value}
         onChange={handleChange}
         variant="scrollable"
-        scrollButtons="auto"
         aria-label="scrollable"
+        scrollButtons="on"
       >
         <Tab icon={<HomeOutlinedIcon />} label="Front Page" />
         <Tab icon={<NaturePeopleOutlinedIcon />} label="Science and Tech" />

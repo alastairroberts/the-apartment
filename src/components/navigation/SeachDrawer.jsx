@@ -29,7 +29,7 @@ const SearchDrawer = ({ searchDrawerIsOpen, setSearchDrawer }) => {
             meta
             thumbnail {
               childImageSharp {
-                fluid {
+                fluid(maxWidth: 500) {
                   ...GatsbyImageSharpFluid
                 }
               }

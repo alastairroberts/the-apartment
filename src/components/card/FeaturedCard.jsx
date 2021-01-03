@@ -42,11 +42,7 @@ const FeaturedCard = ({ post }) => {
       <Card className={classes.root}>
         <CardActionArea>
           {frontmatter.thumbnail && (
-            <CardMedia
-              image="https://via.placeholder.com/350"
-              className={classes.media}
-              title={frontmatter.title}
-            >
+            <CardMedia className={classes.media} title={frontmatter.title}>
               {frontmatter.thumbnail && (
                 <Img
                   style={{ width: 300, height: 200 }}

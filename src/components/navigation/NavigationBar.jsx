@@ -2,9 +2,7 @@ import React from "react"
 
 import { makeStyles } from "@material-ui/core/styles"
 import { AppBar, Toolbar, Typography } from "@material-ui/core"
-import ContactSupportOutlinedIcon from "@material-ui/icons/ContactSupportOutlined"
 import SearchOutlinedIcon from "@material-ui/icons/SearchOutlined"
-import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined"
 
 import { Link } from "gatsby"
 
